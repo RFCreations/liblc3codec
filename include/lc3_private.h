@@ -108,7 +108,7 @@ struct lc3_encoder {
     lc3_spec_analysis_t spec;
 
     int16_t *xt;
-    float *xs, *xd, s[0];
+    float *xs, *xd, s[1];
 };
 
 #define LC3_ENCODER_BUFFER_COUNT(dt_us, sr_hz) \
@@ -145,7 +145,7 @@ struct lc3_decoder {
     lc3_ltpf_synthesis_t ltpf;
     lc3_plc_state_t plc;
 
-    float *xh, *xs, *xd, *xg, s[0];
+    float *xh, *xs, *xd, *xg, s[1];
 };
 
 #define LC3_DECODER_BUFFER_COUNT(dt_us, sr_hz) \

@@ -348,7 +348,7 @@ int lc3_encode(struct lc3_encoder *encoder, enum lc3_pcm_format fmt,
     /* --- Processing --- */
 
     struct side_data side;
-    uint16_t xq[LC3_NE(encoder->dt, encoder->sr)];
+    uint16_t xq[400]; // LC3_NE(encoder->dt, encoder->sr)];
 
     load[fmt](encoder, pcm, stride);
 

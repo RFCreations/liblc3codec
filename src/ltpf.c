@@ -646,7 +646,7 @@ bool lc3_ltpf_analyse(
     bool pitch_present = detect_pitch(ltpf, x_6k4, n_6k4, &tc);
 
     if (pitch_present) {
-        int16_t u[n_12k8], v[n_12k8];
+        int16_t u[128], v[128]; // was n_12k8, so max=128 (qv line 618)
 
         data->pitch_index = refine_pitch(x_12k8, n_12k8, tc, &pitch);
 
@@ -701,7 +701,10 @@ LC3_HOT static inline void synthesize_template(
 {
     float g = (float)(fade <= 0);
     float g_incr = (float)((fade > 0) - (fade < 0)) / n;
-    float u[w];
+    float u[12];
+    int i;
+
+    assert(w<=12);
 
     /* --- Load previous samples --- */
 
@@ -809,7 +812,8 @@ void lc3_ltpf_synthesize(enum lc3_dt dt, enum lc3_srate sr, int nbytes,
     bool active = data && data->active && g_idx < 4;
 
     int w = LC3_MAX(4, LC3_SRATE_KHZ(sr) / 4);
-    float c[2*w];
+    // maximum possible w is 12
+    float c[24]; // was [w]
 
     for (int i = 0; i < w; i++) {
         float g = active ? 0.4f - 0.05f * g_idx : 0;
@@ -821,7 +825,7 @@ void lc3_ltpf_synthesize(enum lc3_dt dt, enum lc3_srate sr, int nbytes,
 
     int ns = LC3_NS(dt, sr);
     int nt = ns / (3 + dt);
-    float x0[w];
+    float x0[12];
 
     if (active)
         memcpy(x0, x + nt-(w-1), (w-1) * sizeof(float));

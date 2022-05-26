@@ -26,7 +26,6 @@
 #include <lc3.h>
 #include "fastmath.h"
 
-#include <stdalign.h>
 #include <limits.h>
 #include <string.h>
 
@@ -99,6 +98,9 @@
  * - For encoding, keep 1.25 ms for temporal window
  * - For decoding, keep 18 ms of history, aligned on frames, and a frame
  */
+
+ // max value of dt is 1, max value of sr is 4
+ // so LC3_NS is max 480, LC3_NE is max 400, LC3_ND is max umm 23/30*360 or 5/8*480  so 300
 
 #define LC3_NS(dt, sr) \
     ( 20 * (3 + (dt)) * (1 + (sr) + ((sr) == LC3_SRATE_48K)) )
