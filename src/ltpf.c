@@ -18,6 +18,7 @@
 
 #include "ltpf.h"
 #include "tables.h"
+#include <assert.h>
 
 #include "ltpf_neon.h"
 #include "ltpf_arm.h"
