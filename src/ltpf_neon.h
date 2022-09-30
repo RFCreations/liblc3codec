@@ -22,6 +22,7 @@
 #include <arm_neon.h>
 #endif /* TEST_NEON */
 
+#include <stdalign.h>
 
 /**
  * Import
