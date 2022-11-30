@@ -18,8 +18,9 @@
 
 #include "tables.h"
 
+#ifndef LC3_DISABLE_NEON
 #include "mdct_neon.h"
-
+#endif
 
 /* ----------------------------------------------------------------------------
  *  FFT processing

@@ -20,7 +20,9 @@
 #include "tables.h"
 #include <assert.h>
 
+#ifndef LC3_DISABLE_NEON
 #include "ltpf_neon.h"
+#endif
 #include "ltpf_arm.h"
 
 
